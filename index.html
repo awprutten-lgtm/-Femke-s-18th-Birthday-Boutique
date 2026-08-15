@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#fff6fb" />
+  <title>Femke's Birthday Boutique</title>
+  <meta name="description" content="Femke's Birthday Boutique — birthday match, wishlist en verjaardagswensen voor haar 18e." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Italiana&family=Parisienne&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="luxury.css" />
+</head>
+<body>
+  <div class="sparkles" aria-hidden="true"></div>
+  <header class="topbar">
+    <button class="brand" data-nav="home" aria-label="Naar home">
+      <span class="brand-crown">♕</span>
+      <span>Femke's Birthday Boutique</span>
+    </button>
+    <nav class="nav" aria-label="Hoofdnavigatie">
+      <button data-nav="home">Home</button>
+      <button data-nav="match">Boutique Match</button>
+      <button data-nav="wishlist">Wishlist</button>
+      <button data-nav="wishes">Birthday Wishes</button>
+    </nav>
+    <button id="adminShortcut" class="icon-btn" title="Boutique beheer" aria-label="Boutique beheer">✦</button>
+  </header>
+
+  <main>
+    <section id="view-home" class="view active">
+      <div class="hero-shell">
+        <div class="hero-copy">
+          <p class="eyebrow">THE EIGHTEENTH EDITION</p>
+          <h1><span>Welcome to</span> Femke's <em>Birthday Boutique</em></h1>
+          <p class="hero-sub">Turning 18 never looked this pretty.</p>
+          <p class="hero-text">Geen idee wat je moet geven? Laat de boutique jouw perfecte cadeau matchen of snuffel zelf door Femke's wishlist.</p>
+          <div class="hero-actions">
+            <button class="btn primary" data-nav="match">🎀 Start Boutique Match</button>
+            <button class="btn ghost" data-nav="wishlist">🛍 Browse Boutique</button>
+          </div>
+          <div class="countdown-card">
+            <span class="countdown-label">Countdown to the celebration</span>
+            <strong id="countdownText">...</strong>
+            <small>We vieren het op 4 september • Femke wordt 18 op 10 september</small>
+          </div>
+        </div>
+
+        <div class="hero-display" aria-label="Decoratieve boutique display">
+          <div class="display-frame">
+            <div class="bow bow-one">୨୧</div>
+            <div class="gold-star star-one">✦</div>
+            <div class="gold-star star-two">✧</div>
+            <div class="perfume-card">
+              <span>F</span>
+              <small>EAU DE BIRTHDAY</small>
+            </div>
+            <div class="cocktail-glass">🍸</div>
+            <div class="display-plaque">
+              <span>PRETTY IN PINK</span>
+              <strong>XVIII</strong>
+              <small>glitz • gold • birthday magic</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mini-grid">
+        <button class="mini-card" data-nav="match"><span>01</span><strong>Find your match</strong><small>3 vragen. 1 perfecte cadeaurichting.</small></button>
+        <button class="mini-card" data-nav="wishlist"><span>02</span><strong>Shop the wishlist</strong><small>Zoek, filter en reserveer.</small></button>
+        <button class="mini-card" id="surpriseHome"><span>03</span><strong>Surprise me</strong><small>Laat de boutique één cadeau kiezen.</small></button>
+        <button class="mini-card" data-nav="wishes"><span>04</span><strong>Leave a note</strong><small>Schrijf iets liefs voor Femke.</small></button>
+      </div>
+    </section>
+
+    <section id="view-match" class="view">
+      <div class="section-head center">
+        <p class="eyebrow">PERSONAL SHOPPING, BUT MAKE IT BIRTHDAY</p>
+        <h2>Boutique Match</h2>
+        <p>Beantwoord drie vragen en wij openen de juiste cadeaucollectie.</p>
+      </div>
+
+      <div id="quizCard" class="quiz-card">
+        <div class="quiz-progress"><span id="progressBar"></span></div>
+        <div id="quizContent"></div>
+      </div>
+
+      <div id="matchResults" class="results hidden">
+        <div class="result-banner">
+          <p class="eyebrow">YOUR BOUTIQUE RECOMMENDATION</p>
+          <h3 id="resultTitle">Perfect Match</h3>
+          <div class="match-score"><span id="matchScore">98%</span><small>gift match</small></div>
+          <p id="resultCopy"></p>
+        </div>
+        <div id="resultGiftGrid" class="product-grid"></div>
+        <div class="center actions-row">
+          <button class="btn ghost" id="restartQuiz">↻ Opnieuw</button>
+          <button class="btn primary" data-nav="wishlist">Bekijk hele wishlist</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-wishlist" class="view">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">SHOP FEMKE'S PICKS</p>
+          <h2>The Wishlist</h2>
+          <p>Alles wat Femke leuk vindt, maar dan alsof je door een mini boutique shopt.</p>
+        </div>
+        <div class="wishlist-stats">
+          <div><strong id="availableCount">0</strong><span>available</span></div>
+          <div><strong id="reservedCount">0</strong><span>reserved</span></div>
+          <div><strong id="mostWantedCount">0</strong><span>most wanted</span></div>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <label class="searchbox">⌕<input id="giftSearch" type="search" placeholder="Zoek cadeau..." /></label>
+        <select id="categoryFilter" aria-label="Filter categorie"><option value="all">Alle categorieën</option></select>
+        <select id="budgetFilter" aria-label="Filter budget"><option value="all">Alle budgetten</option></select>
+        <select id="sortSelect" aria-label="Sorteren">
+          <option value="featured">Sort: Boutique picks</option>
+          <option value="price-asc">Prijs laag → hoog</option>
+          <option value="price-desc">Prijs hoog → laag</option>
+          <option value="mostwanted">Most Wanted eerst</option>
+          <option value="available">Beschikbaar eerst</option>
+        </select>
+        <button class="btn compact" id="surpriseBtn">🎁 Surprise Boutique Pick</button>
+      </div>
+
+      <div id="wishlistGrid" class="product-grid"></div>
+      <div id="emptyWishlist" class="empty-state hidden">
+        <span>🎀</span><h3>Nog niets gevonden</h3><p>Pas je filters aan of voeg in het beheer nieuwe cadeaus toe.</p>
+      </div>
+    </section>
+
+    <section id="view-wishes" class="view">
+      <div class="wishes-layout">
+        <div>
+          <p class="eyebrow">SEALED WITH A LITTLE PINK MAGIC</p>
+          <h2>Birthday Wishes</h2>
+          <p class="large-copy">Laat een lieve, grappige of chaotische verjaardagswens achter voor Femke's 18e.</p>
+          <form id="wishForm" class="pretty-form">
+            <label>Naam<input id="wishName" maxlength="40" required placeholder="Jouw naam" /></label>
+            <label>Bericht<textarea id="wishMessage" maxlength="400" required placeholder="Schrijf iets voor Femke..."></textarea></label>
+            <button class="btn primary" type="submit">💌 Verzend birthday note</button>
+          </form>
+        </div>
+        <div>
+          <div class="envelope-title"><span>✉</span><div><strong>Notes for Femke</strong><small>live uit het gastenboek</small></div></div>
+          <div id="wishWall" class="wish-wall"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Made for one very pretty 18th birthday ♡</p>
+    <button id="footerAdmin">Boutique staff only</button>
+  </footer>
+
+  <dialog id="giftDialog" class="modal">
+    <button class="modal-x" data-close="giftDialog">×</button>
+    <div id="giftDialogBody"></div>
+  </dialog>
+
+  <dialog id="reserveDialog" class="modal small-modal">
+    <button class="modal-x" data-close="reserveDialog">×</button>
+    <div class="modal-header"><span>🎁</span><div><p class="eyebrow">RESERVE YOUR PICK</p><h3 id="reserveGiftName">Cadeau reserveren</h3></div></div>
+    <form id="reserveForm" class="pretty-form">
+      <input type="hidden" id="reserveGiftId" />
+      <label>Naam<input id="reserveName" required maxlength="40" placeholder="Jouw naam" /></label>
+      <label>E-mail <small>(optioneel, alleen om zelf te kunnen ont-reserveren)</small><input id="reserveEmail" type="email" maxlength="100" placeholder="naam@email.nl" /></label>
+      <button class="btn primary" type="submit">♡ Ja, reserveer dit cadeau</button>
+      <button class="btn ghost" type="button" data-close="reserveDialog">Annuleren</button>
+    </form>
+  </dialog>
+
+  <dialog id="adminLoginDialog" class="modal small-modal">
+    <button class="modal-x" data-close="adminLoginDialog">×</button>
+    <div class="modal-header"><span>♕</span><div><p class="eyebrow">BOUTIQUE STAFF</p><h3>Beheer openen</h3></div></div>
+    <form id="adminLoginForm" class="pretty-form">
+      <label>Beheercode<input id="adminCodeInput" type="password" inputmode="numeric" autocomplete="off" placeholder="••••" required /></label>
+      <button class="btn primary" type="submit">Open boutique beheer</button>
+    </form>
+  </dialog>
+
+  <dialog id="adminDialog" class="modal admin-modal">
+    <button class="modal-x" data-close="adminDialog">×</button>
+    <div class="admin-head">
+      <div><p class="eyebrow">FEMKE'S CONTROL ROOM</p><h2>Boutique beheer</h2></div>
+      <span id="syncStatus" class="status-pill">● lokaal</span>
+    </div>
+    <div class="admin-tabs">
+      <button class="active" data-admin-tab="gifts">Cadeaus</button>
+      <button data-admin-tab="budgets">Budgetten</button>
+      <button data-admin-tab="settings">Instellingen</button>
+      <button data-admin-tab="wishes">Wensen</button>
+    </div>
+
+    <div id="admin-gifts" class="admin-panel active">
+      <div class="admin-toolbar">
+        <p>Voeg onbeperkt cadeaus toe. Alles wat je hier opslaat verschijnt direct in de boutique.</p>
+        <button id="addGiftBtn" class="btn primary compact">＋ Cadeau toevoegen</button>
+      </div>
+      <div id="adminGiftList" class="admin-list"></div>
+    </div>
+
+    <div id="admin-budgets" class="admin-panel">
+      <p class="admin-intro">De vier budgetopties in vraag 3 kun je helemaal zelf aanpassen.</p>
+      <div id="budgetEditor" class="budget-editor"></div>
+      <button id="saveBudgetsBtn" class="btn primary">Budgetten opslaan</button>
+    </div>
+
+    <div id="admin-settings" class="admin-panel">
+      <div class="settings-grid">
+        <label>Vierdatum<input id="settingPartyDate" type="date" /></label>
+        <label>Verjaardag<input id="settingBirthday" type="date" /></label>
+        <label>Admincode<input id="settingAdminCode" type="text" maxlength="20" /></label>
+      </div>
+      <p class="helper">Tip: verander de standaard admincode voordat je de link rondstuurt.</p>
+      <button id="saveSettingsBtn" class="btn primary">Instellingen opslaan</button>
+      <hr />
+      <h3>Firebase</h3>
+      <p class="helper">Voor gedeelde cadeaus, Most Wanted, reserveringen en wensen tussen verschillende apparaten.</p>
+      <code id="dbUrlPreview">Nog niet gekoppeld</code>
+    </div>
+
+    <div id="admin-wishes" class="admin-panel">
+      <div id="adminWishList" class="admin-list"></div>
+    </div>
+  </dialog>
+
+  <dialog id="editGiftDialog" class="modal admin-modal edit-gift-modal">
+    <button class="modal-x" data-close="editGiftDialog">×</button>
+    <p class="eyebrow">PRODUCT EDITOR</p>
+    <h2 id="editGiftHeading">Cadeau toevoegen</h2>
+    <form id="giftEditForm" class="pretty-form gift-edit-form">
+      <input type="hidden" id="editGiftId" />
+      <div class="two-col">
+        <label>Naam<input id="editGiftName" required maxlength="120" /></label>
+        <label>Prijs (€)<input id="editGiftPrice" type="number" min="0" step="0.01" placeholder="29.99" /></label>
+      </div>
+      <div class="two-col">
+        <label>Budget<select id="editGiftBudget"></select></label>
+        <label>Categorie<input id="editGiftCategory" maxlength="40" placeholder="Jewellery, Beauty, Fashion..." /></label>
+      </div>
+      <label>Productlink<input id="editGiftLink" type="url" placeholder="https://..." /></label>
+      <label>Kort tekstje<textarea id="editGiftNote" maxlength="180" placeholder="Waarom Femke dit leuk vindt..."></textarea></label>
+      <label>Afbeelding URL<input id="editGiftImage" type="url" placeholder="https://..." /></label>
+      <label class="upload-label">Of upload een afbeelding<input id="editGiftFile" type="file" accept="image/*" /></label>
+      <div id="imagePreview" class="image-preview"></div>
+      <label class="check-row"><input id="editGiftMostWanted" type="checkbox" /> <span>👑 Markeer als Most Wanted</span></label>
+      <div class="actions-row">
+        <button class="btn primary" type="submit">Cadeau opslaan</button>
+        <button class="btn ghost" type="button" data-close="editGiftDialog">Annuleren</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <canvas id="confettiCanvas" class="confetti-canvas" aria-hidden="true"></canvas>
+
+  <script src="firebase-config.js"></script>
+  <script src="script.js"></script>
+  <script src="luxury.js"></script>
+</body>
+</html>
